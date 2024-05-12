@@ -1,7 +1,7 @@
 This is an initial, rough proof-of-concept version aimed at quickly obtaining
 a demo while still in the process of learning Go and Kubernetes. It is mostly
 undocumented and untested. It will remain here in a frozen state. A new
-version is currently being developed in branch [`main`]().
+version will commence development in branch [`main`](https://github.com/on2e/union-csi/tree/main).
 
 # Union CSI
 
