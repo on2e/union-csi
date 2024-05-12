@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: union-storage
+provisioner: union.csi.driver.union.io
+parameters:
+  # KinD ships with Rancher's Local Path Provisioner
+  # and names the default StorageClass `standard`
+  lowerStorageClassName: standard
+reclaimPolicy: Delete

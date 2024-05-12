@@ -1,0 +1,15 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: union-role
+rules:
+  - apiGroups: [ "" ]
+    resources: [ "persistentvolumeclaims" ]
+    verbs: [ "get", "list", "watch", "create", "delete", "update" ]
+  - apiGroups: [ "" ]
+    resources: [ "pods" ]
+    verbs: [ "get", "list", "watch", "create", "delete", "update" ]
+  - apiGroups: ["union.io"]
+    resources: ["volumesplits"]
+    verbs: ["get", "create", "delete"]
+
