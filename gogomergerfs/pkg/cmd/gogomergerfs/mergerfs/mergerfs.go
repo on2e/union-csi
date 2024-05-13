@@ -43,13 +43,13 @@ func NewCommand() *cobra.Command {
 		"options",
 		"o",
 		[]string{},
-		"Comma-separated list of mount options",
+		"Comma-separated list of mount options to pass to mergerfs",
 	)
 	cmd.Flags().BoolVar(
 		&flags.Block,
 		"block",
 		false,
-		"Execute mergerfs, block for SIGINT or SIGTERM, then unmount. If set to false, execute mergerfs as if executing directly the command",
+		"Execute mergerfs, block for SIGINT | SIGTERM, then unmount. If set to false, execute mergerfs as if executing directly the command",
 	)
 	cmd.Flags().SortFlags = false
 	return cmd
