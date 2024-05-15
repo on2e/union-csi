@@ -5,7 +5,7 @@ version will commence development in branch [`main`](https://github.com/on2e/uni
 
 # Union CSI
 
-Union CSI is [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md)
+Union CSI is a [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md)
 (CSI) plugin for Kubernetes, enabling the combination of multiple persistent
 volumes (branches) into single, unified hierarchies as [FUSE](https://www.kernel.org/doc/html/latest/filesystems/fuse.html)
 union mounts for Pods.
@@ -15,10 +15,12 @@ union mounts for Pods.
 * [Goals](#goals)
 * [Design](#design)
     * [Multi-node Volumes](#multi-node-volumes)
+    * [Demo Version](#demo-version)
 * [Terminology](#terminology)
 * [Performance](#performance)
 * [Building](#building)
 * [Deployment](#deployment)
+* [Documentation](#documentation)
 * [WIP](#wip)
 
 ## Goals
@@ -50,7 +52,7 @@ workloads.
 
 ### Multi-node Volumes
 
-The primary motivation behind Union CSI is to achieve *multi-node* volumes:
+The primary motivation behind Union CSI is to achieve *multi-node volumes*:
 volumes whose branches span across different disks and nodes in the cluster.
 This is accomplished by pooling the remote branches through the network.
 This enables users to achieve capacities that near the total available capacity
@@ -65,6 +67,15 @@ assets from different nodes.
 Additionally, the only way to allocate new branches on different nodes through
 Union CSI is for the user to request a volume large enough so that its branches
 can only be placed on different nodes by the lower plugin.
+
+### Demo Version
+
+The demo version of Union CSI, found in this branch, statically splits the
+requested capacity in half by always creating two equally sized lower PVCs. An
+example showcasing how this mini version can be used to yield a powerful use
+case is provided in [Demo with Longhorn](https://github.com/on2e/union-csi/blob/demo/docs/longhorn-demo.md),
+where [Longhorn](https://longhorn.io) is employed as the lower storage provider
+for Union CSI.
 
 ## Terminology
 
@@ -85,19 +96,27 @@ of `mergerfs`.
 
 ## Building
 
-To create a local Docker image run `make IMAGE=union-csi:demo docker-build`.
+To create a local Docker image run
+
+```sh
+make IMAGE=union-csi:demo docker-build
+```
 
 ## Deployment
 
-To deploy this demo version of Union CSI in a Kubernetes cluster using the
-Docker images from my [personal repository](https://hub.docker.com/search?q=on2e)
+To deploy this demo version of Union CSI in a Kubernetes cluster via Kustomize
+using the Docker images from my [personal registry](https://hub.docker.com/search?q=on2e)
 on Docker Hub, run:
 
 ```sh
-kubectl apply -k deploy/k8s/
+kubectl apply -k ./deploy/k8s
 ```
+
+## Documentation
+
+* [Demo with Longhorn](https://github.com/on2e/union-csi/blob/demo/docs/longhorn-demo.md)
 
 ## WIP
 
-Everything here is still work in progress and highly experimental. Union CSI is
-currently a personal and academic project.   
+Union CSI is still work in progress and highly experimental. It is currently a
+personal and academic project.   
