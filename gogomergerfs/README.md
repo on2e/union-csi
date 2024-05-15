@@ -8,7 +8,7 @@ filesystem is mounted.
 ## Usage
 
 ```console
-$ ./bin/gogomergerfs mergerfs --help
+$ gogomergerfs mergerfs --help
 A featureful FUSE based union filesystem (https://github.com/trapexit/mergerfs)
 
 Usage:
